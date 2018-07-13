@@ -1,4 +1,3 @@
-#if defined(ESP32) && !defined(ARDUINO)
 #include <esp_log.h>
 #include <freertos/FreeRTOS.h>
 #include <freertos/task.h>
@@ -129,4 +128,3 @@ app_main(void)
 		vTaskDelay(1000 / portTICK_PERIOD_MS);
 	}
 }
-#endif // defined(ESP32) && !defined(ARDUINO)
