@@ -1,0 +1,12 @@
+{
+    "name": "TRB_BME280",
+    "build": {
+        "extraScript": "ex.py"
+    },
+    "dependencies": [
+        {
+            "name": "BME280_driver",
+            "version": "https://github.com/BoschSensortec/BME280_driver.git#bme280_v3.3.4"
+        }
+    ]
+}
