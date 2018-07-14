@@ -5,6 +5,9 @@
 
 #elif defined(TRB_BME280_I2C_WIRE)
 #include "TRB_BME280_I2C_Wire.h"
+
+#elif defined(TRB_BME280_I2C_BRZO)
+#include "TRB_BME280_I2C_brzo.h"
 #endif
 
 #endif // !defined(_TRB_BME280_h)
