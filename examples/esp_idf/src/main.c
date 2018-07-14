@@ -9,7 +9,8 @@
 #include <bme280.h>
 #include <sdkconfig.h>
 
-#include <TRB_BME280_ESP_IDF.h>
+#include <TRB_BME280.h>
+
 
 esp_err_t
 i2c_init(const gpio_num_t sda, const gpio_num_t scl)

@@ -5,7 +5,7 @@
 #include <driver/i2c.h>
 #include <stdint.h>
 
-#include "TRB_BME280_ESP_IDF.h"
+#include "TRB_BME280_I2C_ESP_IDF.h"
 
 #define ACK_CHECK_EN 0x1 /* I2C master will check ack from slave */
 
@@ -22,7 +22,6 @@ trb_bme280_delay_ms(const uint32_t period)
 int8_t
 trb_bme280_read(const uint8_t dev_id, const uint8_t reg_addr, uint8_t *reg_data, const uint16_t len)
 {
-	uint8_t i;
 	int8_t result = 0;
 	i2c_cmd_handle_t command;
 	esp_err_t r;
@@ -61,7 +60,7 @@ trb_bme280_read(const uint8_t dev_id, const uint8_t reg_addr, uint8_t *reg_data,
 		ESP_LOGE(log_tag, "i2c_master_cmd_begin() failed: %d", result);
 	}
 	if (len > 1) {
-		for (i = 0; i < len; i++) {
+		for (uint8_t i = 0; i < len; i++) {
 		ESP_LOGD(log_tag, "Register: 0x%x Data: 0x%x len: %d index: %d",
 		    reg_addr + i, reg_data[i], len, i);
 		}

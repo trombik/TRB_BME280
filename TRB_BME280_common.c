@@ -2,6 +2,10 @@
 #include <bme280.h>
 #include <TRB_BME280_common.h>
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 struct bme280_dev
 bme280_create_i2c_dev(const uint8_t i2c_address, const struct bme280_settings settings)
 {
@@ -15,3 +19,7 @@ bme280_create_i2c_dev(const uint8_t i2c_address, const struct bme280_settings se
 	dev.settings = settings;
 	return dev;
 }
+
+#ifdef __cplusplus
+}
+#endif
