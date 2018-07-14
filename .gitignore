@@ -2,4 +2,4 @@
 .piolibdeps
 build/
 *.swp
-sdkconfig.h
+sdkconfig*
