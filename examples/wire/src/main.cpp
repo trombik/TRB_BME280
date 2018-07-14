@@ -1,16 +1,17 @@
 #include <Arduino.h>
-//#include <bme280.h>
 #include <TRB_BME280.h>
 
-#if defined(BME280_DRIVERS_I2C_LIB_BRZO)
+#if defined(TRB_BME280_I2C_BRZO)
 #include <brzo_i2c.h>
-#elif defined(BME280_DRIVERS_I2C_LIB_TINYWIREM)
+#elif defined(TRB_BME280_I2C_LIB_TINYWIREM)
 #include <TinyWireM.h>
-#elif defined(BME280_DRIVERS_I2C_LIB_I2C)
+#elif defined(TRB_BME280_I2C_LIB_I2C)
 #include <I2C.h>
 #define I2C_FAST 1
-#else
+#elif defined(TRB_BME280_I2C_WIRE)
 #include <Wire.h>
+#else
+#error I2C library is not defined
 #endif
 
 #if defined(ESP8266)
@@ -78,24 +79,26 @@ setup()
 	Serial.println(system_get_sdk_version());
 #endif
 
-#if defined(BME280_DRIVERS_I2C_LIB_BRZO)
+#if defined(TRB_BME280_I2C_BRZO)
 	Serial.println(F("Initializing I2C (brzo)"));
 	brzo_i2c_setup(GPIO_SDA, GPIO_SCL, 2000); /* clock stretching timeout of 2000 usec */
-#elif defined(ESP32)
+#elif defined(TRB_BME280_I2C_LIB_TINYWIREM)
+	Serial.println(F("Initializing I2C (TinyWireM)"));
+	TinyWireM.begin();
+#elif defined(TRB_BME280_I2C_LIB_I2C)
+	Serial.println(F("Initializing I2C (I2c)"));
+	I2c.begin();
+#else
+#if defined(ESP32)
 	Serial.println(F("Initializing I2C (Wire for ESPs)"));
 	Wire.begin(GPIO_SDA, GPIO_SCL, 400000L);
 #elif defined(ESP8266)
 	Serial.println(F("Initializing I2C (Wire for ESPs)"));
 	Wire.begin(GPIO_SDA, GPIO_SCL);
-#elif defined(BME280_DRIVERS_I2C_LIB_TINYWIREM)
-	Serial.println(F("Initializing I2C (TinyWireM)"));
-	TinyWireM.begin();
-#elif defined(BME280_DRIVERS_I2C_LIB_I2C)
-	Serial.println(F("Initializing I2C (I2c)"));
-	I2c.begin();
 #else
 	Serial.println(F("Initializing I2C (Wire)"));
 	Wire.begin();
+#endif
 #endif
 
 	settings.osr_h = BME280_OVERSAMPLING_1X;
@@ -106,11 +109,11 @@ setup()
 
 	dev = bme280_create_i2c_dev(I2C_ADDRESS_BME280, settings);
 	/* set SCL freq to 400KHz */
-#if defined(BME280_DRIVERS_I2C_LIB_BRZO)
+#if defined(TRB_BME280_I2C_BRZO)
 	bme280_brzo_set_scl_freq(400);
-#elif defined(BME280_DRIVERS_I2C_LIB_I2C)
+#elif defined(TRB_BME280_I2C_LIB_I2C)
 	I2c.setSpeed(I2C_FAST);
-#elif !defined(ESP32) && !defined(BME280_DRIVERS_I2C_LIB_TINYWIREM)
+#elif !defined(ESP32) && !defined(TRB_BME280_I2C_LIB_TINYWIREM)
 	Wire.setClock(400000L);
 #endif
 	result = bme280_init(&dev);
