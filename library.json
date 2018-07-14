@@ -1,5 +1,12 @@
 {
     "name": "TRB_BME280",
+    "platforms": [
+        "espressif32"
+    ],
+    "frameworks": [
+        "espidf",
+        "arduino"
+    ],
     "build": {
         "extraScript": "ex.py"
     },
