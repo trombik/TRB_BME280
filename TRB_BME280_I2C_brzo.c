@@ -58,7 +58,7 @@ trb_bme280_write(const uint8_t dev_id, const uint8_t reg_addr, uint8_t *reg_data
 	uint8_t *buffer;
 
 	/* the buffer needs an extra byte in the first element */
-	buffer = malloc(sizeof(uint8_t) * (len + 1));
+	buffer = (uint8_t *)malloc(sizeof(uint8_t) * (len + 1));
 	if (buffer == NULL)
 		return -1;
 
