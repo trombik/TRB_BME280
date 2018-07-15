@@ -14,6 +14,16 @@
         {
             "name": "BME280_driver",
             "version": "https://github.com/BoschSensortec/BME280_driver.git#bme280_v3.3.4"
+        },
+        {
+            "name": "Brzo I2C",
+            "platforms": "espressif8266"
+        },
+        {
+            "name": "I2C-Master-Library",
+            "version": "https://github.com/DSSCircuits/I2C-Master-Library.git#v5.0",
+            "frameworks": "arduino",
+            "platforms": "atmelavr"
         }
     ]
 }
