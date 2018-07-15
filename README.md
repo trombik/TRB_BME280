@@ -11,6 +11,7 @@ Define one of macros below.
 | `TRB_BME280_I2C_ESP_IDF` | `esp-idf` | `espressif32` | Native I2C API |
 | `TRB_BME280_I2C_WIRE` | `arduino` | `espressif32`, `espressif8266`, `atmelavr` | `Wire` |
 | `TRB_BME280_I2C_BRZO` | `arduino` | `espressif8266` | `Brzo I2C` |
+| `TRB_BME280_I2C_LIB_I2C` | `arduino` | `arduino` | `atmelavr` | `I2C-Master-Library` |
 
 `platformio` example for `espressif32`.
 
