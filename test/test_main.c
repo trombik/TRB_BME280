@@ -3,7 +3,7 @@
 #include <esp_log.h>
 #include <unity.h>
 
-#include "TRB_BMP280.h"
+#include "TRB_BME280.h"
 
 static char component[] = "[TRB_BME280]";
 uint16_t reg_value_16;
