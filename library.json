@@ -1,7 +1,9 @@
 {
     "name": "TRB_BME280",
     "platforms": [
-        "espressif32"
+        "espressif32",
+        "espressif8266",
+        "atmelavr"
     ],
     "frameworks": [
         "espidf",
