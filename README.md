@@ -4,7 +4,7 @@ A driver for `BME280` IC with multiple I2C drivers.
 
 ## Choosing I2C implementation
 
-Define one of variable below. The variable must be defined as compiler flag,
+Define one of variables below. The variable must be defined as build flag,
 not in the code.
 
 | Header file | Framework | Platform | Driver |
