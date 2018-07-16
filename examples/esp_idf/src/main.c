@@ -52,7 +52,7 @@ task_measure(void * pvParameters)
 	settings.filter = BME280_FILTER_COEFF_16;
 	settings.standby_time = BME280_STANDBY_TIME_1_MS;
 
-	dev = bme280_create_i2c_dev(I2C_ADDRESS_BME280, settings);
+	dev = trb_bme280_create_i2c_dev(I2C_ADDRESS_BME280, settings);
 
 	result = bme280_init(&dev);
 	if (result == BME280_OK) {
