@@ -6,7 +6,9 @@
 #include "TRB_BME280.h"
 
 static char component[] = "[TRB_BME280]";
-uint16_t reg_value_16;
+static uint8_t i2c_address = BME280_I2C_ADDR_PRIM;
+static uint8_t soft_reset_word = 0xB6;
+static uint8_t chip_id = BME280_CHIP_ID;
 uint8_t reg_value_8;
 
 esp_err_t
@@ -32,10 +34,18 @@ TEST_CASE("i2c_init", component)
 	TEST_ASSERT_EQUAL_INT8(0, i2c_driver_delete(I2C_NUM_0));
 }
 
+
 TEST_CASE("trb_bme280_read", component)
 {
+	TEST_ASSERT_EQUAL_INT8(0, i2c_init());
+	TEST_ASSERT_EQUAL_INT8(0, trb_bme280_read(i2c_address, BME280_CHIP_ID_ADDR, &reg_value_8, 1));
+	TEST_ASSERT_EQUAL_INT8(chip_id, reg_value_8);
+	TEST_ASSERT_EQUAL_INT8(0, i2c_driver_delete(I2C_NUM_0));
 }
 
 TEST_CASE("trb_bme280_write", component)
 {
+	TEST_ASSERT_EQUAL_INT8(0, i2c_init());
+	TEST_ASSERT_EQUAL_INT8(0, trb_bme280_write(i2c_address, BME280_RESET_ADDR, &soft_reset_word, 1));
+	TEST_ASSERT_EQUAL_INT8(0, i2c_driver_delete(I2C_NUM_0));
 }
