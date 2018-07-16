@@ -11,6 +11,9 @@
 
 #elif defined(TRB_BME280_I2C_LIB_I2C)
 #include "TRB_BME280_I2C_LIB_I2C.h"
+
+#elif defined(TRB_BME280_I2C_TINYWIREM)
+#include "TRB_BME280_I2C_TINYWIREM.h"
 #endif
 
 #endif // !defined(_TRB_BME280_h)
