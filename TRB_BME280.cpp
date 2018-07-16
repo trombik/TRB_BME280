@@ -10,6 +10,9 @@
 #elif defined(TRB_BME280_I2C_LIB_I2C)
 #include "TRB_BME280_I2C_LIB_I2C.cpp"
 
+#elif defined(TRB_BME280_I2C_TYNYWIREM)
+#include "TRB_BME280_I2C_TYNYWIREM.cpp"
+
 #else
 #error I2C library is not chosen
 #endif
