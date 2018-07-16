@@ -7,7 +7,7 @@ A driver for `BME280` IC with multiple I2C drivers.
 Define one of variables below. The variable must be defined as build flag,
 not in the code.
 
-| Header file | Framework | Platform | Driver |
+| Variable | Framework | Platform | Driver |
 |-------------|-----------|----------|--------|
 | `TRB_BME280_I2C_ESP_IDF` | `esp-idf` | `espressif32` | [Native I2C API](https://esp-idf.readthedocs.io/en/latest/api-reference/peripherals/i2c.html) |
 | `TRB_BME280_I2C_WIRE` | `arduino` | `espressif32`, `espressif8266`, `atmelavr` | [`Wire`](https://www.arduino.cc/en/Reference/Wire) |
