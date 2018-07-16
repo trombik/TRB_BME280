@@ -4,7 +4,8 @@ A driver for `BME280` IC with multiple I2C drivers.
 
 ## Choosing I2C implementation
 
-Define one of macros below.
+Define one of variable below. The variable must be defined as compiler flag,
+not in the code.
 
 | Header file | Framework | Platform | Driver |
 |-------------|-----------|----------|--------|
@@ -26,7 +27,38 @@ build_flags = -D TRB_BME280_I2C_ESP_IDF
 
 ## Usage
 
-TBW
+```c
+#include <TRB_BME280.h>
+
+# initialize I2C bus here
+
+int8_t result;
+uint8_t settings_sel;
+struct bme280_dev dev;
+struct bme280_data data;
+struct bme280_settings settings;
+
+settings.osr_h = BME280_OVERSAMPLING_1X;
+settings.osr_p = BME280_OVERSAMPLING_16X;
+settings.osr_t = BME280_OVERSAMPLING_2X;
+settings.filter = BME280_FILTER_COEFF_16;
+settings.standby_time = BME280_STANDBY_TIME_1_MS;
+dev = trb_bme280_create_i2c_dev(I2C_ADDRESS_BME280, settings);
+
+result = bme280_init(&dev);
+settings_sel =
+    BME280_OSR_PRESS_SEL | BME280_OSR_TEMP_SEL |
+    BME280_OSR_HUM_SEL | BME280_FILTER_SEL;
+result = bme280_set_sensor_settings(settings_sel, &dev);
+result = bme280_set_sensor_mode(BME280_FORCED_MODE, &dev);
+result = bme280_get_sensor_data(BME280_ALL, &data, &dev);
+
+# do something with data.temperature, data.humidity, and data.pressure...
+```
+
+For more details, see [bme280.h](https://github.com/BoschSensortec/BME280_driver/blob/master/bme280.h).
+
+Examples can be found under [examples](examples).
 
 ## Unit testing
 
