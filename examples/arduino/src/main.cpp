@@ -107,7 +107,7 @@ setup()
 	settings.filter = BME280_FILTER_COEFF_16;
 	settings.standby_time = BME280_STANDBY_TIME_1_MS;
 
-	dev = bme280_create_i2c_dev(I2C_ADDRESS_BME280, settings);
+	dev = trb_bme280_create_i2c_dev(I2C_ADDRESS_BME280, settings);
 	/* set SCL freq to 400KHz */
 #if defined(TRB_BME280_I2C_BRZO)
 	bme280_brzo_set_scl_freq(400);

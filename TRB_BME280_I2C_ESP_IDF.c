@@ -20,12 +20,12 @@ trb_bme280_delay_ms(const uint32_t period)
 }
 
 int8_t
-trb_bme280_read(const uint8_t dev_id, const uint8_t reg_addr, uint8_t *reg_data, const uint16_t len)
+trb_bme280_i2c_read(const uint8_t dev_id, const uint8_t reg_addr, uint8_t *reg_data, const uint16_t len)
 {
 	int8_t result = 0;
 	i2c_cmd_handle_t command;
 	esp_err_t r;
-	static char log_tag[] = "trb_bme280_read";
+	static char log_tag[] = "trb_bme280_i2c_read";
 
 	command = i2c_cmd_link_create();
 
@@ -72,12 +72,12 @@ trb_bme280_read(const uint8_t dev_id, const uint8_t reg_addr, uint8_t *reg_data,
 }
 
 int8_t
-trb_bme280_write(const uint8_t dev_id, const uint8_t reg_addr, uint8_t *reg_data, const uint16_t len)
+trb_bme280_i2c_write(const uint8_t dev_id, const uint8_t reg_addr, uint8_t *reg_data, const uint16_t len)
 {
 	uint8_t i;
 	i2c_cmd_handle_t command;
 	esp_err_t r;
-	static char log_tag[] = "trb_bme280_write";
+	static char log_tag[] = "trb_bme280_i2c_write";
 	command = i2c_cmd_link_create();
 
 	/* I2C start */

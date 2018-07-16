@@ -35,17 +35,17 @@ TEST_CASE("i2c_init", component)
 }
 
 
-TEST_CASE("trb_bme280_read", component)
+TEST_CASE("trb_bme280_i2c_read", component)
 {
 	TEST_ASSERT_EQUAL_INT8(0, i2c_init());
-	TEST_ASSERT_EQUAL_INT8(0, trb_bme280_read(i2c_address, BME280_CHIP_ID_ADDR, &reg_value_8, 1));
+	TEST_ASSERT_EQUAL_INT8(0, trb_bme280_i2c_read(i2c_address, BME280_CHIP_ID_ADDR, &reg_value_8, 1));
 	TEST_ASSERT_EQUAL_INT8(chip_id, reg_value_8);
 	TEST_ASSERT_EQUAL_INT8(0, i2c_driver_delete(I2C_NUM_0));
 }
 
-TEST_CASE("trb_bme280_write", component)
+TEST_CASE("trb_bme280_i2c_write", component)
 {
 	TEST_ASSERT_EQUAL_INT8(0, i2c_init());
-	TEST_ASSERT_EQUAL_INT8(0, trb_bme280_write(i2c_address, BME280_RESET_ADDR, &soft_reset_word, 1));
+	TEST_ASSERT_EQUAL_INT8(0, trb_bme280_i2c_write(i2c_address, BME280_RESET_ADDR, &soft_reset_word, 1));
 	TEST_ASSERT_EQUAL_INT8(0, i2c_driver_delete(I2C_NUM_0));
 }
